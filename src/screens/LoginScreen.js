@@ -20,7 +20,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [password, setPa] = useState(null);
 
   const {login} = useContext(AuthContext)
   return (
@@ -62,9 +62,6 @@ const LoginScreen = ({navigation}) => {
             />
           }
           keyboardType="email-address"
-          //penambahan value
-          value={email}
-          onChangeText = {text => setEmail(text)}
         />
 
 <InputField
@@ -80,14 +77,12 @@ const LoginScreen = ({navigation}) => {
           inputType="password"
           fieldButtonLabel={"Forgot"}
           fieldButtonFunction={() => {}}
-          value={password}
-          onChangeText = {text => setPassword(text)}
         />
         
         <CustomeButton
           label={'Login'}
           onPress={()=> {
-          login(email, password)
+          login()
           }}
         />
 
