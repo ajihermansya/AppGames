@@ -2,7 +2,7 @@ import {
     DrawerContentScrollView,
     DrawerItemList,
 } from '@react-navigation/drawer';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     Image,
     ImageBackground,
@@ -13,8 +13,10 @@ import {
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../context/AuthContext';
 
 const CustomerDrawer = (props) => {
+    const {logout } = useContext(AuthContext)
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView
@@ -55,6 +57,17 @@ const CustomerDrawer = (props) => {
                             fontSize: 15, 
                             fontFamily: 'Roboto-Medium', 
                             marginLeft: 5 }}>Tell a Friend</Text>
+                    </View>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity onPress={() => { logout()}} style={{ paddingVertical: 15 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Icon name="log-out-outline" size={22} />
+                        <Text style={{ 
+                            fontSize: 15, 
+                            fontFamily: 'Roboto-Medium', 
+                            marginLeft: 5 }}>Log Out</Text>
                     </View>
                 </TouchableOpacity>
             </View>

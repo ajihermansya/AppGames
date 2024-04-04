@@ -1,5 +1,5 @@
 //rnfes
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,8 +16,13 @@ import TwitterSvg from '../assets/images/misc/twitter.svg';
 import LoginSvg from '../assets/images/misc/login.svg';
 import CustomeButton from '../components/CustomeButton';
 import InputField from '../components/InputField';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const {login} = useContext(AuthContext)
   return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
       <View style={{paddingHorizontal: 25}}>
@@ -57,6 +62,9 @@ const LoginScreen = ({navigation}) => {
             />
           }
           keyboardType="email-address"
+          //penambahan value
+          value={email}
+          onChangeText = {text => setEmail(text)}
         />
 
 <InputField
@@ -72,12 +80,14 @@ const LoginScreen = ({navigation}) => {
           inputType="password"
           fieldButtonLabel={"Forgot"}
           fieldButtonFunction={() => {}}
+          value={password}
+          onChangeText = {text => setPassword(text)}
         />
         
         <CustomeButton
           label={'Login'}
           onPress={()=> {
-          
+          login(email, password)
           }}
         />
 
